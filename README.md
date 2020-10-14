@@ -2,7 +2,7 @@
 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-The application provides a company the opportunity to organize it's offices, employees,clients and packets.
+The application provides a company the opportunity to organize its offices, employees, clients and packets.
 The project utilizes Spring Boot, Tomcat, MySQL, JPA, Thymeleaf.
 
 It features 3 different parts:
