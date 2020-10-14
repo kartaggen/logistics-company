@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logistics Company - Admin</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/income.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}">Logistics Company</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Tracking -->
+<section class="income text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" href="/admin/report"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Income between periods</h1>
+                <h2 th:if="${success}" th:text="${{dateBefore}} + ' - ' + ${{dateAfter}}"></h2>
+                <br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-7 col-sm-9 col-11 mx-auto">
+                <div class="card text-center" th:if="${success}" th:object="${incomeDto}">
+                    <h4 class="card-title mt-4">Income: <b><span th:text="*{income}"></span></b></h4>
+                    <div class="card-body">
+                        <h5 class="mb-4">Total weight: <b><span th:text="*{weightAll}"></span></b></h5>
+                        <h5 class="mb-4">Total packets: <b><span th:text="*{packetsAll}"></span></b></h5>
+                        <h5 class="mb-4">Packets "Processing": <b><span th:text="*{packets1}"></span></b></h5>
+                        <h5 class="mb-4">Packets "On the way": <b><span th:text="*{packets2}"></span></b></h5>
+                        <h5 class="mb-4">Packets "Delivered": <b><span th:text="*{packets3}"></span></b></h5>
+                        <h5 class="mb-4">Packets "Not Received": <b><span th:text="*{packets4}"></span></b></h5>
+                        <h5 class="mb-4">Packets to Office: <b><span th:text="*{toOffice}"></span></b></h5>
+                    </div>
+                </div>
+                <div th:if="${invalidDates}">
+                    <div class="alert alert-danger">
+                        <h4>Invalid dates!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved. <br/><em>Martin
+                    Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Custom JavaScript -->
+<script th:src="@{/js/index.js}"></script>
+
+</body>
+
+</html>

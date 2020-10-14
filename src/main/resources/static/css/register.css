@@ -1,0 +1,105 @@
+/*!
+ * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+  z-index: 100;
+  -webkit-box-shadow: 0px 5px 10px #00000030;
+  -moz-box-shadow: 0px 5px 10px #00000030;
+  box-shadow: 0px 5px 10px #00000030;
+}
+
+.navbar-logo {
+  width: 42px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 2px #000000;
+  font-size: 30px;
+  font-weight: 800;
+  color: #1CC88B !important;
+}
+
+.navbar .btn {
+  margin: 0 10px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #1CC88B !important;
+  border-color: #008A59;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+}
+
+.register-section {
+  position: relative;
+  background: linear-gradient(45deg, rgba(106, 223, 182, 0.7), rgba(63, 210, 158, 0.7)), url("../img/register.jpg") center top no-repeat;
+  background-size: cover;
+  padding-top: 7rem;
+  min-height: 48rem;
+}
+
+.register-section .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+.register-section h2 {
+  margin-bottom: 10px;
+}
+
+.class- {
+  margin: auto;
+}
+
+.register-section button {
+  margin: 20px 0;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  text-decoration: none;
+  color: #1CC88B;
+}
+
+footer.footer {
+  z-index: 100;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  -webkit-box-shadow: 0px -5px 10px #00000030;
+  -moz-box-shadow: 0px -5px 10px #00000030;
+  box-shadow: 0px -5px 10px #00000030;
+}

@@ -1,0 +1,171 @@
+/*!
+ * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+  z-index: 100;
+  -webkit-box-shadow: 0px 5px 10px #00000030;
+  -moz-box-shadow: 0px 5px 10px #00000030;
+  box-shadow: 0px 5px 10px #00000030;
+}
+
+.navbar-logo {
+  width: 42px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 2px #000000;
+  font-size: 30px;
+  font-weight: 800;
+  color: #1CC88B !important;
+}
+
+.navbar .btn {
+  margin: 0 10px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #1CC88B !important;
+  border-color: #008A59;
+}
+
+.btn-get-started {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-get-started:hover {
+  color: #1CC88B;
+  background: #fff;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+}
+
+header.masthead {
+  position: relative;
+  background: linear-gradient(45deg, rgba(106, 223, 182, 0.7), rgba(63, 210, 158, 0.7)), url("../img/bg-masthead.jpg") center top no-repeat;
+  background-size: cover;
+  padding-top: 19rem;
+  padding-bottom: 19rem;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+header.masthead h1 {
+  font-size: 3rem;
+}
+
+.showcase .showcase-text {
+  padding: 3rem;
+}
+
+.showcase .showcase-img {
+  min-height: 35rem;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
+}
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons-icon img {
+  margin: 10px auto;
+  color: #1CC88B;
+}
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+  max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+  max-width: 12rem;
+  box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+.call-to-action {
+  position: relative;
+  background: linear-gradient(45deg, rgba(106, 223, 182, 0.7), rgba(63, 210, 158, 0.7)), url("../img/bg-cta.jpg") center top no-repeat;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.call-to-action .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+footer.footer {
+  z-index: 1000;
+  -webkit-box-shadow: 0px -5px 10px #000000f0;
+  -moz-box-shadow: 0px -5px 10px #000000f0;
+  box-shadow: 0px -5px 10px #000000f0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}

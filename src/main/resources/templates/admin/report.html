@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Logistics Company - Admin</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}">Logistics Company</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" href="/admin"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reports</h1>
+            </div>
+        </div>
+    </div>
+    <div id="db-menu" class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Packets registered by:</h5>
+                        <select type="number" name="inputRegisteredBy" id="inputRegisteredBy">
+                            <option th:each="employee : ${allEmployees}" th:value="${employee.id}"
+                                    th:text="'#' + ${employee.id} + ' - ' + ${employee.user.username}"></option>
+                        </select>
+                        <a class="btn btn-primary mt-4 text-white" href="javascript:showPacketsRegisteredBy()">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title my-4">Sent but not delivered packets:</h5>
+                        <a class="btn btn-primary mt-4 text-white" href="/admin/report/sent-not-delivered">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Packets sent by:</h5>
+                        <select type="number" name="inputSentBy" id="inputSentBy">
+                            <option th:each="client : ${allClients}" th:value="${client.id}"
+                                    th:text="'#' + ${client.id} + ' - ' + ${client.username}"></option>
+                        </select>
+                        <a class="btn btn-primary mt-4 text-white" href="javascript:showPacketsSentBy()">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Packets received by:</h5>
+                        <select type="number" name="inputReceivedBy" id="inputReceivedBy">
+                            <option th:each="client : ${allClients}" th:value="${client.id}"
+                                    th:text="'#' + ${client.id} + ' - ' + ${client.username}"></option>
+                        </select>
+                        <a class="btn btn-primary mt-4 text-white" href="javascript:showPacketsReceivedBy()">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Income in the period between:</h5>
+                        <label for="inputDateFrom">From</label>
+                        <input id="inputDateFrom" type="date"><br/>
+                        <label for="inputDateThrough">Through</label>
+                        <input id="inputDateThrough" type="date"><br/>
+                        <a class="btn btn-primary mt-4 text-white" href="javascript:showIncome()">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved.
+                    <br/><em>Martin Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/report.js}"></script>
+</body>
+
+</html>

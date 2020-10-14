@@ -1,0 +1,104 @@
+/*!
+ * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+  z-index: 100;
+  -webkit-box-shadow: 0px 5px 10px #00000030;
+  -moz-box-shadow: 0px 5px 10px #00000030;
+  box-shadow: 0px 5px 10px #00000030;
+}
+
+.navbar-logo {
+  width: 42px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 2px #000000;
+  font-size: 30px;
+  font-weight: 800;
+  color: #1CC88B !important;
+}
+
+.navbar .btn {
+  margin: 0 10px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #1CC88B !important;
+  border-color: #008A59;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+}
+
+.tracking {
+  position: relative;
+  background: linear-gradient(45deg, rgba(106, 223, 182, 0.7), rgba(63, 210, 158, 0.7)), url("../img/bg-cta.jpg") center top no-repeat;
+  background-size: cover;
+  padding-top: 20rem;
+  padding-bottom: 20rem;
+  height: 48rem;
+}
+
+.card-body h5,
+.card-title {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 1px #aaa;
+  font-weight: 600;
+  color: #888 !important;
+}
+
+.card-body h5 span,
+.card-title span {
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: -1px 1px 1px #666;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1CC88B !important;
+}
+
+.tracking .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+.track-table {
+  color: #ffffff;
+}
+
+footer.footer {
+  z-index: 100;
+  -webkit-box-shadow: 0px -5px 10px #00000030;
+  -moz-box-shadow: 0px -5px 10px #00000030;
+  box-shadow: 0px -5px 10px #00000030;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}

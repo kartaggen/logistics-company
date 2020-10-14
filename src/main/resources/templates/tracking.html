@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logistics Company - Tracking</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/tracking.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}" alt="Logo">Logistics Company</a>
+        <div sec:authorize="!isAuthenticated()">
+            <a class="btn btn-primary" href="/register">Register</a>
+            <a class="btn btn-primary" href="/login">Login</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <span sec:authentication="name"></span>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary" href="/admin">Admin Dashboard</a>
+            <a sec:authorize="hasRole('ROLE_MANAGER')" class="btn btn-primary" href="/management">Management
+                Dashboard</a>
+            <a sec:authorize="hasRole('ROLE_EMPLOYEE')" class="btn btn-primary" href="/employee">Employee Dashboard</a>
+            <a sec:authorize="hasRole('ROLE_CLIENT')" class="btn btn-primary" href="/client">Client Dashboard</a>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Tracking -->
+<section class="tracking text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-7 col-sm-9 col-11 mx-auto">
+                <div class="card text-center" th:if="${success}" th:object="${trackPacketDto}">
+                    <h4 class="card-title mt-4">Tracking number: <b><span th:text="*{id}"></span></b></h4>
+                    <div class="card-body">
+                        <h5 class="mb-4">Status: <b><span th:text="*{status}"></span></b></h5>
+                        <h5 class="mb-4">Date: <b><span th:text="*{date}"></span></b></h5>
+                        <h5 class="mb-4">Weight: <b><span th:text="*{weight}"></span></b></h5>
+                        <h5 class="mb-4">Delivery Price: <b><span th:text="*{deliveryPrice}"></span></b></h5>
+                    </div>
+                </div>
+                <div th:if="${invalidId}">
+                    <div class="alert alert-danger">
+                        <h4>Invalid tracking ID!</h4>
+                    </div>
+                </div>
+                <div th:if="${idNotFound}">
+                    <div class="alert alert-danger">
+                        <h4>Tracking ID not found!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved. <br/><em>Martin
+                    Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Custom JavaScript -->
+<script th:src="@{/js/index.js}"></script>
+
+</body>
+
+</html>

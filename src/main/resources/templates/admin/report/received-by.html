@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Logistics Company - Admin</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}">Logistics Company</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1><a class="arrow" href="/admin/report"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Packets received by </h1>
+                <h2 th:text="${{client}}"></h2>
+            </div>
+        </div>
+    </div>
+    <!-- Packets Table -->
+    <section class="bg-light text-center" id="data-table">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto table-responsive" th:unless="${#lists.isEmpty(packetsReceivedBy)}">
+                    <table class="table">
+                        <thead>
+                        <th scope="col">ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Status Date</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Delivery Price</th>
+                        <th scope="col">Employee</th>
+                        <th scope="col">Sender</th>
+                        <th scope="col">Recipient</th>
+                        <th scope="col">Address</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="packet : ${packetsReceivedBy}">
+                            <td th:text="${{packet.id}}"></td>
+                            <td th:text="(${{packet.status}} == 1) ? 'Processing' :
+                                            ((${{packet.status}} == 2) ? 'On the way' :
+                                            ((${{packet.status}} == 3) ? 'Delivered' : 'Not received'))"></td>
+                            <td th:text="${#dates.format(packet.statusDate, 'dd/MM/yyyy - HH:mm')}"></td>
+                            <td th:text="${{packet.weight}}"></td>
+                            <td th:text="${{packet.deliveryPrice}}"></td>
+                            <td th:text="${{packet.employee.username}}"></td>
+                            <td th:text="'#' + ${{packet.sender.id}} + ' ' + ${{packet.sender.firstName}}+ ' ' + ${{packet.sender.lastName}}"></td>
+                            <td th:text="'#' + ${{packet.recipient.id}} + ' ' + ${{packet.recipient.firstName}}+ ' ' + ${{packet.recipient.lastName}}"></td>
+                            <td th:text="(${{packet.isOffice}} ? 'Office ' : ' ') + ${{packet.address}}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h4 class="p-2 mx-auto" th:if="${#lists.isEmpty(packetsReceivedBy)}">No packets received by <span th:text="${{client}}"></span></h4>
+        </div>
+    </section>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved.
+                    <br/><em>Martin Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

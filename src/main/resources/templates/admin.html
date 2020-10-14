@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Logistics Company - Admin</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}">Logistics Company</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <!-- Main Dashboard -->
+    <div id="db-header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 mx-auto">
+                <h1>Administration Dashboard</h1>
+            </div>
+        </div>
+    </div>
+    <div id="db-menu" class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Offices</h5>
+                        <a class="btn btn-primary" href="/admin/office">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Employees</h5>
+                        <a class="btn btn-primary" href="/admin/employee">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Clients</h5>
+                        <a class="btn btn-primary" href="/admin/client">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Packets</h5>
+                        <a class="btn btn-primary" href="/admin/packet">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Account Information</h5>
+                        <a class="btn btn-primary" href="/admin/account">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-sm-5 col-lg-4 my-4 mx-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Reports</h5>
+                        <a class="btn btn-primary" href="/admin/report">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved.
+                    <br/><em>Martin Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

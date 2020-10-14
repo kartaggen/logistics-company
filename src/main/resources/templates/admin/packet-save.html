@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Logistics Company - Admin</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}">Logistics Company</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <form action="/admin/packet-save" enctype="utf8" method="POST" th:object="${packet}">
+        <div class="row justify-content-center w-100">
+            <div id="save-notifs" class="col-12 w-50 mx-auto">
+                <div th:if="${param.createSuccess}">
+                    <div class="alert alert-success">
+                        Packet creation is complete!
+                    </div>
+                </div>
+                <div th:if="${param.updateSuccess}">
+                    <div class="alert alert-success">
+                        Packet update is complete!
+                    </div>
+                </div>
+                <div th:if="${param.failure}">
+                    <div class="alert alert-danger">
+                        Packet save has failed!
+                    </div>
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <ul th:if="${#fields.hasErrors('*')}">
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 mx-auto">
+                    <h1><a class="arrow" href="/admin/packet"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save Packet
+                    </h1>
+                    <br/>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-4 col-sm-offset-4 class-">
+                    <div class="form-group row">
+                        <div class="col"><label for="inputReadOnlyId" class="col-form-label">Id</label></div>
+                        <div class="col"><input type="text" readonly class="form-control" id="inputReadOnlyId"
+                                                th:field="*{id}"
+                                                th:value="${packet.id}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputStatus">Status</label>
+                                <select class="form-control" id="inputStatus"
+                                        th:errorclass="is-invalid"
+                                        th:field="*{status}">
+                                    <option value="1">Processing</option>
+                                    <option value="2">On the way</option>
+                                    <option value="3">Delivered</option>
+                                    <option value="4">Not received</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputWeight">Weight</label>
+                                <input class="form-control" id="inputWeight" placeholder="1.400"  step="0.001"
+                                       th:errorclass="is-invalid"
+                                       th:field="*{weight}" type="number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate">Date</label>
+                        <input class="form-control" id="inputDate"
+                               th:errorclass="is-invalid"
+                               th:field="*{date}" type="datetime-local">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSender">Sender</label>
+                        <select id="inputSender" th:field="*{sender}">
+                            <option th:each="client : ${allClients}"
+                                    th:value="${client.id}"
+                                    th:text="'#' + ${{client.id}} + ' ' + ${{client.firstName}}+ ' ' + ${{client.lastName}}"></option>
+                        </select><br/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputReceiver">Receiver</label>
+                        <select id="inputReceiver" th:field="*{recipient}">
+                            <option th:each="client : ${allClients}"
+                                    th:value="${client.id}"
+                                    th:text="'#' + ${{client.id}} + ' ' + ${{client.firstName}}+ ' ' + ${{client.lastName}}"></option>
+                        </select><br/>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="inputIsOffice" th:field="*{isOffice}">
+                        <label class="form-check-label" for="inputIsOffice">Company office</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input class="form-control" id="inputAddress" name="address"
+                               placeholder="Address"
+                               required type="text"
+                               th:errorclass="is-invalid"
+                               th:field="*{address}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDeliveryPrice">Delivery Price</label>
+                        <input type="text" readonly class="form-control" id="inputDeliveryPrice" name="deliveryPrice"
+                               placeholder="14.00"
+                               th:errorclass="is-invalid"
+                               th:field="*{deliveryPrice}">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block signup_btn" type="submit">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved.
+                    <br/><em>Martin Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/price.js}"></script>
+
+</body>
+
+</html>

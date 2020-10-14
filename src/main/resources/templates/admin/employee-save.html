@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Logistics Company - Admin</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">
+            <img alt="Logo" class="navbar-logo" th:src="@{/img/lc-logo-shadow-round.png}">Logistics Company</a>
+        <div>
+            <span sec:authentication="name"></span>
+            <a class="btn btn-primary" href="/logout">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Dashboard -->
+<section class="bg-light text-center" id="admin-db">
+    <form action="/admin/employee-save" enctype="utf8" method="POST" th:object="${employee}">
+        <div class="row justify-content-center w-100">
+            <div id="save-notifs" class="col-12 w-50 mx-auto">
+                <div th:if="${param.createSuccess}">
+                    <div class="alert alert-success">
+                        Employee registration is complete! <br/>Employee password: <b><span th:text="${genPass}"></span></b>
+                    </div>
+                </div>
+                <div th:if="${param.updateSuccess}">
+                    <div class="alert alert-success">
+                        Employee update is complete!
+                    </div>
+                </div>
+                <div th:if="${param.failure}">
+                    <div class="alert alert-danger">
+                        Employee save has failed!
+                    </div>
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <ul th:if="${#fields.hasErrors('*')}">
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 mx-auto">
+                    <h1><a class="arrow" href="/admin/employee"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Save Employee
+                    </h1>
+                    <br/>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-4 col-sm-offset-4 class-">
+                    <div class="form-group row">
+                        <div class="col"><label for="inputReadOnlyId" class="col-form-label">Id</label></div>
+                        <div class="col"><input type="text" readonly class="form-control" id="inputReadOnlyId"
+                                                th:field="*{id}"
+                                                th:value="${employee.id}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputFirstname">First name</label>
+                                <input class="form-control" id="inputFirstname" placeholder="Enter firstname"
+                                       th:errorclass="is-invalid"
+                                       th:field="*{firstname}" type="text">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputLastname">Last name</label>
+                                <input class="form-control" id="inputLastname" placeholder="Enter lastname"
+                                       th:errorclass="is-invalid"
+                                       th:field="*{lastname}" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUsername">Username</label>
+                        <input class="form-control" id="inputUsername" placeholder="Enter username"
+                               th:errorclass="is-invalid"
+                               th:field="*{username}" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email address</label>
+                        <input class="form-control" id="inputEmail" placeholder="Enter email" th:errorclass="is-invalid"
+                               th:field="*{email}" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOffice">Office</label>
+                        <select id="inputOffice" th:field="*{office}">
+                            <option th:each="office : ${allOffices}"
+                                    th:value="${office.id}"
+                                    th:text="'#' + ${office.id} + ' - ' + ${office.name}"></option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block signup_btn" type="submit">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Logistics Company 2020. All Rights Reserved.
+                    <br/><em>Martin Paskov - NBU F97808</em></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
